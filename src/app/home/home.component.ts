@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response} from '@angular/http'
 import 'rxjs/add/operator/map'
+import {GridOptions} from 'ag-grid'
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,33 @@ import 'rxjs/add/operator/map'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-    optionChain;
+    private gridOptions: GridOptions;
+    optionChain = {};
     ticker = null;
-    constructor(private _http: Http) {}
+    constructor(private _http: Http) {
+
+        this.gridOptions = {}
+
+ this.gridOptions.columnDefs = [
+            {
+                headerName: "ID",
+                field: "id",
+                width: 100
+            },
+            {
+                headerName: "Value",
+                field: "value",
+                // cellRendererFramework: RedComponentComponent,
+                width: 100
+            },
+
+        ];
+        this.gridOptions.rowData = [
+            {id: 5, value: 10},
+            {id: 10, value: 15},
+            {id: 15, value: 20}
+        ]
+    }
 
     getOptionChain(){
         var url = 'http://griffin-api.herokuapp.com/quotes/AAPL'
