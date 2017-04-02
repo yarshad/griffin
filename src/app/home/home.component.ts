@@ -15,6 +15,7 @@ import _ from "lodash";
 export class HomeComponent implements OnInit {
     private gridOptions: GridOptions;
 
+    ticker : string
     optionChain : OptionChain = new OptionChain()
     expirations = []
         
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
     
         this.gridOptions = { enableSorting: true, rowHeight : 18}
 
- this.gridOptions.columnDefs = [
+         this.gridOptions.columnDefs = [
              
              {headerName: 'Expiry', field: 'Expiry', width: 80}, 
   {
@@ -60,13 +61,19 @@ export class HomeComponent implements OnInit {
     }
 
     getOptionChain(){
-        var url = 'http://griffin-api.herokuapp.com/quotes/AAPL'
+        var url = 'http://griffin-api.herokuapp.com/quotes/' + this.ticker
         return this._http.get(url).map((response: Response) => response.json());
                 
     }
-
+    
     ngOnInit() {
-      this.getOptionChain().subscribe(response =>{
+     
+    }
+      searchTicker(){
+
+        console.log("Searching for " + this.ticker)
+
+         this.getOptionChain().subscribe(response =>{
               
            this.expirations = response.expirations
            this.optionChain.ticker = response.symbol
@@ -114,8 +121,7 @@ export class HomeComponent implements OnInit {
 
                this.updateGrid()     
       });
-    }
-
+      }
 
     updateGrid(){
 
@@ -123,8 +129,6 @@ export class HomeComponent implements OnInit {
             var options = []
 
               _.each(input.calls,function(d){
-
-                    console.log(d)
                   var call = {
                     cKey : d.optionSymbol,
                     Expiry: d.expiry,

@@ -1,18 +1,32 @@
+ 
+<div class="row">
+  <div class="col-md-3">
+    <div class="input-group input-group-sm">
+  <span class="input-group-addon" id="search">Search</span>
+  <input type="text" class="form-control" placeholder="Ticker" [(ngModel)]="ticker" (keyup.enter)="searchTicker()">
+</div>
+  </div>
+
+<div class="col-md-1">
+  {{optionChain.ticker}}
+</div>
+
+</div>
 
 <br>
-{{optionChain.ticker}}
-{{optionChain.strike}}
-
-
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
 
 <!--<div style="width: 200px;">-->
     <div>
-    <ag-grid-angular #agGrid style="width: 610px; height: 500px;" class="ag-fresh"
+    <ag-grid-angular #agGrid style="width: 610px; height: 495px;" class="ag-fresh"
                  [gridOptions]="gridOptions">
     </ag-grid-angular>
 </div>
 
+  </div>
+
+  <div class="col-md-6">
+      
   </div>
 </div>
