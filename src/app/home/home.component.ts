@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     ticker : string
     optionChain : OptionChain = new OptionChain()
     expirations = []
-        
+    selectedExpiry : number    
     constructor(private _http: Http) {
 
         // console.log(this.optionChain)
@@ -69,6 +69,14 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
      
     }
+
+  expirySelected(expiry){
+      
+    console.log(expiry)
+    // console.log(this.selectedExpiry)
+    // var url = "http://griffin-api.herokuapp.com/options/" + $scope.ticker + "/" + $scope.selectedExpiry
+    // $scope.loadData(url);
+};
       searchTicker(){
 
         console.log("Searching for " + this.ticker)
@@ -161,5 +169,7 @@ export class HomeComponent implements OnInit {
           });
 
          this.gridOptions.api.setRowData(options);
+
+         console.log(this.expirations)
     } 
 }

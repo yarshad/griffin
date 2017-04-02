@@ -4,12 +4,21 @@
     <div class="input-group input-group-sm">
   <span class="input-group-addon" id="search">Search</span>
   <input type="text" class="form-control" placeholder="Ticker" [(ngModel)]="ticker" (keyup.enter)="searchTicker()">
-</div>
+    </div>
   </div>
 
 <div class="col-md-1">
   {{optionChain.ticker}}
 </div>
+
+<div class="col-md-3">
+    <div class="input-group input-group-sm">
+  <span class="input-group-addon" id="expiry">Expiration</span>
+  <select name="theme" class="form-control" [(ngModel)]="selectedExpiry" (ngModelChange)="expirySelected($event)" style="width: 110px">
+        <option *ngFor="let expiry of expirations" [ngValue]="expiry">{{expiry  * 1000 | date : 'dd MMM yyyy' : 'UTC'}}</option>
+      </select>
+    </div>
+  </div>
 
 </div>
 
