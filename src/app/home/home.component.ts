@@ -49,7 +49,5 @@ export class HomeComponent implements OnInit {
               this.ticker = optionData.symbol;
               this.optionChain = optionData
       });
-    }
-
- title = 'Welcome to Griffin!';
+    } 
 }

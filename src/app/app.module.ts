@@ -6,19 +6,18 @@ import {AgGridModule} from "ag-grid-angular/main";
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
-import { OptionStrategyComponent } from './option-strategy/option-strategy.component';
-
-
+import { AboutComponent } from './about/about.component';
+import {APP_ROUTES_PROVIDER} from './app.routes'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    OptionStrategyComponent
-      
+    AboutComponent
   ],
   imports: [
+    APP_ROUTES_PROVIDER,
     BrowserModule,
     FormsModule,
     HttpModule,
