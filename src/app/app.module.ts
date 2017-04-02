@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import {APP_ROUTES_PROVIDER} from './app.routes'
+import {APP_ROUTES_PROVIDER} from './app.routes';
+import { UserComponent } from './user/user.component'
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {APP_ROUTES_PROVIDER} from './app.routes'
     AppComponent,
     NavComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    UserComponent
   ],
   imports: [
     APP_ROUTES_PROVIDER,

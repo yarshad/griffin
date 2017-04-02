@@ -31,23 +31,23 @@ export class HomeComponent implements OnInit {
         headerName: "CALLS",
         children: [
             // {headerName: 'Option', field: 'cKey', width: 150},
-            {headerName: 'Bid', field: 'cBid', width: 50},
-            {headerName: 'Last', field: 'cPrice', width: 50},
-            {headerName: 'Ask', field: 'cAsk', width: 50},
-            {headerName: 'Vol', field: 'cVol', width: 50},
-            {headerName: 'Open Int', field: 'cOpenInterest', width: 65}
+            {headerName: 'Bid', field: 'cBid', width: 45},
+            {headerName: 'Last', field: 'cPrice', width: 45},
+            {headerName: 'Ask', field: 'cAsk', width: 45},
+            {headerName: 'Vol', field: 'cVol', width: 45},
+            {headerName: 'Open Int', field: 'cOpenInterest', width: 55}
         ]
   },
-    {headerName: 'Strike', field: 'Strike', width: 75}, 
+    {headerName: 'Strike', field: 'Strike', width: 50}, 
   {
         headerName: "PUTS",
         children: [
             // {headerName: 'Option', field: 'pKey', width: 150},
-            {headerName: 'Bid', field: 'pBid', width: 50},
-            {headerName: 'Last', field: 'pPrice', width: 50},
-            {headerName: 'Ask', field: 'pAsk', width: 50},
-            {headerName: 'Vol', field: 'pVol', width: 50},
-            {headerName: 'Open Int', field: 'pOpenInterest', width: 65}
+            {headerName: 'Bid', field: 'pBid', width: 45},
+            {headerName: 'Last', field: 'pPrice', width: 45},
+            {headerName: 'Ask', field: 'pAsk', width: 45},
+            {headerName: 'Vol', field: 'pVol', width: 45},
+            {headerName: 'Open Int', field: 'pOpenInterest', width: 55}
         ]
   }
 
@@ -124,6 +124,7 @@ export class HomeComponent implements OnInit {
 
               _.each(input.calls,function(d){
 
+                    console.log(d)
                   var call = {
                     cKey : d.optionSymbol,
                     Expiry: d.expiry,
