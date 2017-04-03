@@ -59,30 +59,29 @@ export class HomeComponent implements OnInit {
             {id: 15, value: 20}
         ]
     }
-
-    getOptionChain(){
-        var url = 'http://griffin-api.herokuapp.com/quotes/' + this.ticker
-        return this._http.get(url).map((response: Response) => response.json());
-                
-    }
-    
+     
     ngOnInit() {
      
     }
 
+searchTicker(){
+        var url = 'http://griffin-api.herokuapp.com/quotes/' + this.ticker
+        var result = this._http.get(url).map((response: Response) => response.json())       
+        result.subscribe(response =>{ this.processResponse(response)})
+     }
+
+
+
   expirySelected(expiry){
       
-    console.log(expiry)
-    // console.log(this.selectedExpiry)
-    // var url = "http://griffin-api.herokuapp.com/options/" + $scope.ticker + "/" + $scope.selectedExpiry
-    // $scope.loadData(url);
-};
-      searchTicker(){
+    var url = "http://griffin-api.herokuapp.com/options/" + this.ticker + "/" + expiry
+    var result = this._http.get(url).map((response: Response) => response.json());
+    result.subscribe(response => {this.processResponse(response)})
+    }
+   
+   
+    processResponse(response){
 
-        console.log("Searching for " + this.ticker)
-
-         this.getOptionChain().subscribe(response =>{
-              
            this.expirations = response.expirations
            this.optionChain.ticker = response.symbol
            
@@ -127,10 +126,9 @@ export class HomeComponent implements OnInit {
                 
                 // console.log(this.optionChain)
 
-               this.updateGrid()     
-      });
-      }
+               this.updateGrid()  
 
+    }
     updateGrid(){
 
             var input = this.optionChain
@@ -148,8 +146,8 @@ export class HomeComponent implements OnInit {
                     Strike: d.strike
 
                   }
-                  options.push(call);
-             });
+                  options.push(call)
+             })
 
 
           _.map(options, function(o){
@@ -166,10 +164,8 @@ export class HomeComponent implements OnInit {
                   o.pVol = put.volume,
                   o.pOpenInterest = put.openInterest                  
               }
-          });
+          })
 
-         this.gridOptions.api.setRowData(options);
-
-         console.log(this.expirations)
+         this.gridOptions.api.setRowData(options)
     } 
 }
