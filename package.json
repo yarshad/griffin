@@ -7,7 +7,7 @@
     "start": "http-server",
     "build": "ng build",
     "preinstall": "npm install -g http-server",
-    "postinstall": "ng build && mv dist/* .",
+    "postinstall": "ng build prod -oh all && mv dist/* .",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
