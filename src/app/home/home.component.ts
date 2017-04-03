@@ -13,7 +13,7 @@ import _ from "lodash";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    private gridOptions: GridOptions;
+    gridOptions: GridOptions;
 
     ticker : string
     spot: number
