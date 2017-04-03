@@ -149,9 +149,7 @@ searchTicker(){
                   options.push(call)
              })
 
-
           _.map(options, function(o){
-
               var put = _.find(input.puts, function(f){
                 return o.Strike === f.strike
               })
