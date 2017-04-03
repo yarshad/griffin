@@ -16,9 +16,15 @@ export class HomeComponent implements OnInit {
     private gridOptions: GridOptions;
 
     ticker : string
+    spot: number
+    asOfDate: string
     optionChain : OptionChain = new OptionChain()
     expirations = []
-    selectedExpiry : number    
+    selectedExpiry : number  
+    baseUrl : string = 'http://griffin-api.herokuapp.com/quotes/'
+    // baseUrl : string = 'http://localhost:9000/'
+
+
     constructor(private _http: Http) {
 
         // console.log(this.optionChain)
@@ -65,7 +71,7 @@ export class HomeComponent implements OnInit {
     }
 
 searchTicker(){
-        var url = 'http://griffin-api.herokuapp.com/quotes/' + this.ticker
+        var url = this.baseUrl + 'quotes/' + this.ticker
         var result = this._http.get(url).map((response: Response) => response.json())       
         result.subscribe(response =>{ this.processResponse(response)})
      }
@@ -74,7 +80,7 @@ searchTicker(){
 
   expirySelected(expiry){
       
-    var url = "http://griffin-api.herokuapp.com/options/" + this.ticker + "/" + expiry
+    var url = this.baseUrl  + "options/" + this.ticker + "/" + expiry
     var result = this._http.get(url).map((response: Response) => response.json());
     result.subscribe(response => {this.processResponse(response)})
     }
@@ -82,9 +88,11 @@ searchTicker(){
    
     processResponse(response){
 
+            console.log(response)
            this.expirations = response.expirations
            this.optionChain.ticker = response.symbol
-           
+           this.spot = response.spot
+           this.asOfDate = response.asOfDate
             var calls =  _.map(response.calls,function(d){
 
                   var call : Option = {
