@@ -5,4 +5,6 @@ export class TradierService {
 
   constructor() { }
 
+  servieName  = 'Tradier'
+
 }

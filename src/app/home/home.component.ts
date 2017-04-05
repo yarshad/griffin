@@ -5,7 +5,7 @@ import {GridOptions} from 'ag-grid'
 import { OptionChain} from '../shared/models/option-chain'
 import { Option} from '../shared/models/option'
 import _ from "lodash";
-
+import {TradierService} from '../shared/services/tradier.service'
 
 @Component({
   selector: 'app-home',
@@ -25,9 +25,11 @@ export class HomeComponent implements OnInit {
     // baseUrl : string = 'http://localhost:9000/'
 
 
-    constructor(private _http: Http) {
+    constructor(private _http: Http, td: TradierService) {
 
         // console.log(this.optionChain)
+
+        console.log(td.servieName)
     
         this.gridOptions = { enableSorting: true, rowHeight : 18}
 

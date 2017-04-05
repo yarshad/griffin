@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import {APP_ROUTES_PROVIDER} from './app.routes';
 import { UserComponent } from './user/user.component'
-
+import {TradierService} from './shared/services/tradier.service'
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { UserComponent } from './user/user.component'
     HttpModule,
     AgGridModule.withComponents([])
   ],
-  providers: [],
+  providers: [TradierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
