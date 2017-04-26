@@ -9,7 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import {APP_ROUTES_PROVIDER} from './app.routes';
 import { UserComponent } from './user/user.component'
-import {TradierService} from './shared/services/tradier.service'
+import {TradierService} from './shared/services/tradier.service';
+import { OptionWidgetComponent } from './option-widget/option-widget.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {TradierService} from './shared/services/tradier.service'
     NavComponent,
     HomeComponent,
     AboutComponent,
-    UserComponent
+    UserComponent,
+    OptionWidgetComponent
   ],
   imports: [
     APP_ROUTES_PROVIDER,

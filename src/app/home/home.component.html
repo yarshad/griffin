@@ -1,17 +1,17 @@
  
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-2 col-sm-2">
     <div class="input-group input-group-sm">
   <span class="input-group-addon" id="search">Search</span>
   <input type="text" class="form-control" placeholder="Ticker" [(ngModel)]="ticker" (keyup.enter)="searchTicker()">
     </div>
   </div>
 
-<div class="col-md-3">
+<div class="col-md-3 col-sm-3">
   {{optionChain.ticker}} |   {{spot}} |  {{asOfDate | date : 'MMM dd hh:mm:ss'}}
 </div>
 
-<div class="col-md-3">
+<div class="col-md-3 col-sm-2">
     <div class="input-group input-group-sm">
   <span class="input-group-addon" id="expiry">Expiration</span>
   <select name="theme" class="form-control" [(ngModel)]="selectedExpiry" (ngModelChange)="expirySelected($event)" style="width: 130px">
@@ -23,7 +23,7 @@
 </div>
 <br>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 col-sm-12"> 
 
 
 
@@ -38,4 +38,17 @@
   <div class="col-md-6">
       
   </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-4 col-sm-6">
+      <app-option-widget title="x"></app-option-widget>
+  </div>
+
+  <div class="col-md-4 col-sm-6">
+      <app-option-widget title="y"></app-option-widget>
+  </div>
+
 </div>
