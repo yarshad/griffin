@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
     optionChain : OptionChain = new OptionChain()
     expirations = []
     selectedExpiry : number  
-    // baseUrl : string = 'http://griffin-api.herokuapp.com/'
-    baseUrl : string = 'http://localhost:9000/'
+    baseUrl : string = 'http://griffin-api.herokuapp.com/'
+    // baseUrl : string = 'http://localhost:9000/'
 
 
     constructor(private _http: Http, td: TradierService) {
