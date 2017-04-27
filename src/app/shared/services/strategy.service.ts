@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import {Strategy} from '../models/Strategy'
+import {OptionStrategy} from '../models/option-strategy'
 
 @Injectable()
 export class StrategyService {
 
   constructor() { }
 
-  public getStraddle(ticker) {
+  public getStraddle(ticker, spot) {
     
-    var strategy = new Strategy()
+    var strategy = new OptionStrategy()
     strategy.name = "Straddle"
     strategy.ticker = ticker
+    strategy.spot = spot
 
     return strategy;
   }

@@ -6,7 +6,7 @@ import { OptionChain} from '../shared/models/option-chain'
 import { Option} from '../shared/models/option'
 import _ from "lodash";
 
-import {Strategy} from '../shared/models/strategy'
+import {OptionStrategy} from '../shared/models/option-strategy'
 import {StrategyService} from '../shared/services/strategy.service'
 
 @Component({
@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     addStrategy(){
 
         console.log("Adding strategy")
-        var strategy = this.strategyService.getStraddle(this.optionChain.ticker)
+        var strategy = this.strategyService.getStraddle(this.optionChain.ticker, this.optionChain.spot)
         this.strategies.unshift(strategy)
 
     }

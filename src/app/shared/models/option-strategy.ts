@@ -1,4 +1,4 @@
-export class Strategy{
+export class OptionStrategy{
 
     name: string
     ticker: string

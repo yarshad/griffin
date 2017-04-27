@@ -1,5 +1,5 @@
 import { Input, Component, OnInit, SimpleChanges  } from '@angular/core';
-import { Strategy} from '../shared/models/strategy'
+import { OptionStrategy} from '../shared/models/option-strategy'
 
 @Component({
   selector: 'app-option-widget',
@@ -8,7 +8,7 @@ import { Strategy} from '../shared/models/strategy'
 })
 export class OptionWidgetComponent  {
 
-  @Input() strategy : Strategy ;
+  @Input() strategy : OptionStrategy ;
 
   constructor() {
         
