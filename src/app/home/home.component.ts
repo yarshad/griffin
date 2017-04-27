@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     addStrategy(){
 
         console.log("Adding strategy")
-        var strategy = this.strategyService.getStraddle(this.optionChain.ticker, this.optionChain.spot)
+        var strategy = this.strategyService.getStraddle(this.optionChain)
         this.strategies.unshift(strategy)
 
     }
