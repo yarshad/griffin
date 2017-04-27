@@ -1,4 +1,5 @@
-import { Input, Component, OnInit } from '@angular/core';
+import { Input, Component, OnInit, SimpleChanges  } from '@angular/core';
+import { OptionChain} from '../shared/models/option-chain'
 
 @Component({
   selector: 'app-option-widget',
@@ -7,7 +8,18 @@ import { Input, Component, OnInit } from '@angular/core';
 })
 export class OptionWidgetComponent  {
 
-  @Input() title:string;
-  
+  @Input() optionChain : OptionChain ;
+  @Input() title : string;
+
+  constructor() {
+        
+    }
+
+ ngOnChanges(changes: SimpleChanges) {
+        // only run when property "data" changed
+        if (changes['optionChain']) {
+            console.log(this.optionChain.ticker)
+        }
+    }
 
 }

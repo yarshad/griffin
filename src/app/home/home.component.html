@@ -7,12 +7,8 @@
     </div>
   </div>
 
-<div class="col-md-3 col-sm-3">
-  {{optionChain.ticker}} |   {{spot}} |  {{asOfDate | date : 'MMM dd hh:mm:ss'}}
-</div>
-
-<div class="col-md-3 col-sm-2">
-    <div class="input-group input-group-sm">
+<div class="col-md-2 col-sm-3">
+  <div class="input-group input-group-sm">
   <span class="input-group-addon" id="expiry">Expiration</span>
   <select name="theme" class="form-control" [(ngModel)]="selectedExpiry" (ngModelChange)="expirySelected($event)" style="width: 130px">
         <option *ngFor="let expiry of expirations" [ngValue]="expiry">{{expiry  * 1000 | date : 'dd MMM yyyy' : 'UTC'}}</option>
@@ -20,15 +16,26 @@
     </div>
   </div>
 
+
+<div class="col-md-2 col-sm-2">
+<button class="btn btn-primary btn-sm" (click)="addStrategy()">Add Strategy</button>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-3 col-sm-3">
+  {{optionChain.ticker}} |   {{optionChain.spot}} |  {{optionChain.timestamp | date : 'MMM dd hh:mm:ss'}}
+</div>
 </div>
 <br>
+
 <div class="row">
   <div class="col-md-6 col-sm-12"> 
 
 
 
     <div>
-    <ag-grid-angular #agGrid style="width: 610px; height: 480px;" class="ag-fresh"
+    <ag-grid-angular #agGrid style="width: 610px; height: 460px;" class="ag-fresh"
                  [gridOptions]="gridOptions">
     </ag-grid-angular>
 </div>
@@ -36,19 +43,7 @@
   </div>
 
   <div class="col-md-6">
-      
+       <app-option-widget  *ngFor="let d of data" [title]="d" [optionChain]="optionChain"></app-option-widget>
+      <br>
   </div>
-</div>
-
-<br>
-
-<div class="row">
-  <div class="col-md-4 col-sm-6">
-      <app-option-widget title="x"></app-option-widget>
-  </div>
-
-  <div class="col-md-4 col-sm-6">
-      <app-option-widget title="y"></app-option-widget>
-  </div>
-
 </div>

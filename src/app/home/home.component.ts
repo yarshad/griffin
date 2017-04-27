@@ -15,61 +15,57 @@ import {TradierService} from '../shared/services/tradier.service'
 export class HomeComponent implements OnInit {
     gridOptions: GridOptions;
 
-    ticker : string
-    spot: number
-    asOfDate: string
+    ticker: string = 'SPY'
     optionChain : OptionChain = new OptionChain()
     expirations = []
+    data = []
     selectedExpiry : number  
     baseUrl : string = 'http://griffin-api.herokuapp.com/'
     // baseUrl : string = 'http://localhost:9000/'
 
-
     constructor(private _http: Http, td: TradierService) {
-
-        // console.log(this.optionChain)
-
-        console.log(td.servieName)
-    
-        this.gridOptions = { enableSorting: true, rowHeight : 18}
-
-         this.gridOptions.columnDefs = [
-             
-             {headerName: 'Expiry', field: 'Expiry', width: 80}, 
-  {
-        headerName: "CALLS",
-        children: [
-            // {headerName: 'Option', field: 'cKey', width: 150},
-            {headerName: 'Bid', field: 'cBid', width: 45},
-            {headerName: 'Last', field: 'cPrice', width: 45},
-            {headerName: 'Ask', field: 'cAsk', width: 45},
-            {headerName: 'Vol', field: 'cVol', width: 45},
-            {headerName: 'Open Int', field: 'cOpenInterest', width: 55}
-        ]
-  },
-    {headerName: 'Strike', field: 'Strike', width: 50}, 
-  {
-        headerName: "PUTS",
-        children: [
-            // {headerName: 'Option', field: 'pKey', width: 150},
-            {headerName: 'Bid', field: 'pBid', width: 45},
-            {headerName: 'Last', field: 'pPrice', width: 45},
-            {headerName: 'Ask', field: 'pAsk', width: 45},
-            {headerName: 'Vol', field: 'pVol', width: 45},
-            {headerName: 'Open Int', field: 'pOpenInterest', width: 55}
-        ]
-  }
-
-        ];
-        this.gridOptions.rowData = [
-            {id: 5, value: 10},
-            {id: 10, value: 15},
-            {id: 15, value: 20}
-        ]
+        this.initGrid()
+        this.searchTicker()
     }
-     
+
+    initGrid() {
+        this.gridOptions = { enableSorting: true, rowHeight : 18}
+        this.gridOptions.columnDefs = [
+            
+             {headerName: 'Expiry', field: 'Expiry', width: 80}, 
+            {
+                    headerName: "CALLS",
+                    children: [
+                        // {headerName: 'Option', field: 'cKey', width: 150},
+                        {headerName: 'Bid', field: 'cBid', width: 45},
+                        {headerName: 'Last', field: 'cPrice', width: 45},
+                        {headerName: 'Ask', field: 'cAsk', width: 45},
+                        {headerName: 'Vol', field: 'cVol', width: 45},
+                        {headerName: 'Open Int', field: 'cOpenInterest', width: 55}
+                    ]
+            },
+                {headerName: 'Strike', field: 'Strike', width: 50}, 
+            {
+                    headerName: "PUTS",
+                    children: [
+                        // {headerName: 'Option', field: 'pKey', width: 150},
+                        {headerName: 'Bid', field: 'pBid', width: 45},
+                        {headerName: 'Last', field: 'pPrice', width: 45},
+                        {headerName: 'Ask', field: 'pAsk', width: 45},
+                        {headerName: 'Vol', field: 'pVol', width: 45},
+                        {headerName: 'Open Int', field: 'pOpenInterest', width: 55}
+                    ]
+            }];
+    }
+
     ngOnInit() {
      
+    }
+
+    addStrategy(){
+        console.log("Adding strategy")
+        this.data.push(1)
+
     }
 
 searchTicker(){
@@ -78,9 +74,7 @@ searchTicker(){
         result.subscribe(response =>{ this.processResponse(response)})
      }
 
-
-
-  expirySelected(expiry){
+expirySelected(expiry){
       
     var url = this.baseUrl  + "options/" + this.ticker + "/" + expiry
     var result = this._http.get(url).map((response: Response) => response.json());
@@ -90,11 +84,11 @@ searchTicker(){
    
     processResponse(response){
 
-            console.log(response)
+           console.log(response)
            this.expirations = response.expirations
            this.optionChain.ticker = response.symbol
-           this.spot = response.spot
-           this.asOfDate = response.asOfDate
+           this.optionChain.spot = response.spot
+           this.optionChain.timestamp = response.asOfDate
             var calls =  _.map(response.calls,function(d){
 
                   var call : Option = {
@@ -176,4 +170,5 @@ searchTicker(){
 
          this.gridOptions.api.setRowData(options)
     } 
+
 }
