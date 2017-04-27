@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import {APP_ROUTES_PROVIDER} from './app.routes';
 import { UserComponent } from './user/user.component'
-import {TradierService} from './shared/services/tradier.service';
+import {StrategyService} from './shared/services/strategy.service';
 import { OptionWidgetComponent } from './option-widget/option-widget.component'
 
 @NgModule({
@@ -28,7 +28,7 @@ import { OptionWidgetComponent } from './option-widget/option-widget.component'
     HttpModule,
     AgGridModule.withComponents([])
   ],
-  providers: [TradierService],
+  providers: [StrategyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

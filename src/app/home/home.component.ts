@@ -5,7 +5,9 @@ import {GridOptions} from 'ag-grid'
 import { OptionChain} from '../shared/models/option-chain'
 import { Option} from '../shared/models/option'
 import _ from "lodash";
-import {TradierService} from '../shared/services/tradier.service'
+
+import {Strategy} from '../shared/models/strategy'
+import {StrategyService} from '../shared/services/strategy.service'
 
 @Component({
   selector: 'app-home',
@@ -13,19 +15,21 @@ import {TradierService} from '../shared/services/tradier.service'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    gridOptions: GridOptions;
 
+    strategyService : StrategyService
+    gridOptions: GridOptions;
     ticker: string = 'SPY'
     optionChain : OptionChain = new OptionChain()
     expirations = []
-    data = []
+    strategies = []
     selectedExpiry : number  
     baseUrl : string = 'http://griffin-api.herokuapp.com/'
     // baseUrl : string = 'http://localhost:9000/'
 
-    constructor(private _http: Http, td: TradierService) {
+    constructor(private _http: Http, ss: StrategyService) {
         this.initGrid()
         this.searchTicker()
+        this.strategyService = ss
     }
 
     initGrid() {
@@ -63,8 +67,10 @@ export class HomeComponent implements OnInit {
     }
 
     addStrategy(){
+
         console.log("Adding strategy")
-        this.data.push(1)
+        var strategy = this.strategyService.getStraddle(this.optionChain.ticker)
+        this.strategies.unshift(strategy)
 
     }
 
