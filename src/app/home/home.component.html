@@ -23,7 +23,7 @@
 </div>
 
 <div class="row">
-<div class="col-md-3 col-sm-3">
+<div class="col-md-3 col-sm-3" *ngIf="optionChain">
   {{optionChain.ticker}} |   {{optionChain.spot}} |  {{optionChain.timestamp | date : 'MMM dd hh:mm:ss'}}
 </div>
 </div>

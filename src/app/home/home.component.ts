@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     strategyService : StrategyService
     gridOptions: GridOptions;
     ticker: string = 'SPY'
-    optionChain : OptionChain = new OptionChain()
+    optionChain : OptionChain 
     expirations = []
     strategies = []
     selectedExpiry : number  
@@ -88,14 +88,10 @@ expirySelected(expiry){
     }
    
    
-    processResponse(response){
-
+    processResponse(response){         
            console.log(response)
            this.expirations = response.expirations
-           this.optionChain.ticker = response.symbol
-           this.optionChain.spot = response.spot
-           this.optionChain.timestamp = response.asOfDate
-            var calls =  _.map(response.calls,function(d){
+           var calls =  _.map(response.calls,function(d){
 
                   var call : Option = {
                     key : d.optionSymbol,
@@ -113,7 +109,8 @@ expirySelected(expiry){
                   
              });
 
-            this.optionChain.calls = calls
+            
+            // this.optionChain.calls = calls
 
              var puts = _.map(response.puts,function(d){
 
@@ -132,11 +129,8 @@ expirySelected(expiry){
                     return put;
              });
  
-                this.optionChain.puts = puts;
-                
-                // console.log(this.optionChain)
-
-               this.updateGrid()  
+                this.optionChain = new OptionChain(response.symbol,response.spot, response.asOfDate,calls,puts)
+                this.updateGrid()  
 
     }
     updateGrid(){
