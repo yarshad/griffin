@@ -18,7 +18,7 @@ export class StrategyService {
     
 
     var td1 = new Trade(-1,true,optionChain.calls[0])
-    var td2 = new Trade(1,false,optionChain.puts[10])
+    var td2 = new Trade(1,false,optionChain.puts[20])
     
     strategy.legs = [td1, td2]
 

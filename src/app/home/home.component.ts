@@ -126,7 +126,7 @@ expirySelected(expiry){
                     volume : d.volume,
                     openInterest : d.openInterest,
                     strike: d.strike,
-                    isCall: true
+                    isCall: false
                   }
 
                     return put;
