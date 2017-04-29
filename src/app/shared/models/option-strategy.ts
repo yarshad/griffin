@@ -4,8 +4,10 @@ import{Trade} from './trade'
 
 export class OptionStrategy{
 
-   public name: string
-   public ticker: string
-   public spot: number
-   public legs: Trade[]
+   name: string
+   ticker: string
+   spot: number
+   atmStrike: number
+   legs: Trade[]
+   totalPrice: number
 }
