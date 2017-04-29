@@ -1,41 +1,32 @@
 
 {{strategy.ticker}} |  {{strategy.spot}} | {{  strategy.name}}
 
-{{strategy.leg1 | json}}
+
 <table style="font-size:10px" class="table table-striped table-bordered table-condensed table-hover">
-  <thead>
-        <tr>
+        <thead>
+            <tr>
             <th>Expiry</th>
             <th>B/S</th>
             <th>QTY</th>
             <th>Strike</th>
             <th>CallPut</th>            
             <th>Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>5/12/2017</td>
-            <td>SELL</td>
-            <th>-1</th>
-            <td>100</td>
-            <td>C</td>
-            <td>1.120</td>
-        </tr>
-
-        <tr>
-            <td>5/12/2017</td>
-            <td>BUY</td>
-            <th>1</th>
-            <td>100</td>
-            <td>P</td>
-            <td>2.1</td>
-        </tr>
-    </tbody>
-  <tfoot>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of strategy.legs">
+                <td>{{row.option.expiry}}</td>
+                <td>{{row.isShort ? 'SELL' : 'BUY'}}</td>
+                <td>{{row.quantity}}</td>
+                <td>{{row.option.strike}}</td>
+                <td>{{row.option.isCall ? 'CALL' : 'PUT'}}</td>
+                <td>{{row.option.price}}</td>
+            </tr>
+        </tbody>
+    <tfoot>
     <tr>
       <td colspan="5">Total</td>
       <td>3.2</td>
     </tr>
   </tfoot>
-</table>
+    </table>

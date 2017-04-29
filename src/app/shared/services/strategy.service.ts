@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {OptionStrategy} from '../models/option-strategy'
 import {OptionChain} from  '../models/option-chain'
+import {Trade} from  '../models/trade'
+
 
 @Injectable()
 export class StrategyService {
@@ -13,8 +15,13 @@ export class StrategyService {
     strategy.name = "Straddle"
     strategy.ticker = optionChain.ticker
     strategy.spot = optionChain.spot
+    
 
-    strategy.leg1 = optionChain.calls[0]
+    var td1 = new Trade(-1,true,optionChain.calls[0])
+    var td2 = new Trade(1,false,optionChain.puts[10])
+    
+    strategy.legs = [td1, td2]
+
     return strategy;
   }
 

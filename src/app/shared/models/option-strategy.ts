@@ -1,14 +1,11 @@
 
 import {Option} from './option'
+import{Trade} from './trade'
 
 export class OptionStrategy{
 
-    name: string
-    ticker: string
-    spot: number
-    strike: number
-
-    leg1: Option
-    leg2: Option
-    
+   public name: string
+   public ticker: string
+   public spot: number
+   public legs: Trade[]
 }
