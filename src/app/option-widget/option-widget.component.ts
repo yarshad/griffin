@@ -17,7 +17,7 @@ export class OptionWidgetComponent  {
  ngOnChanges(changes: SimpleChanges) {
         // only run when property "data" changed
         if (changes['strategy']) {
-            // console.log(this.strategy.atmStrike)
+            // console.log(this.strategy.legs)
         }
     }
 

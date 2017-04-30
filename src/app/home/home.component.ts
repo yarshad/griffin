@@ -69,7 +69,8 @@ export class HomeComponent implements OnInit {
     addStrategy(){
 
         console.log("Adding strategy")
-        var strategy = this.strategyService.getStrangle(this.optionChain)
+        // var strategy = this.strategyService.getStrangle(this.optionChain)
+        var strategy = this.strategyService.getIronCondor(this.optionChain)
         this.strategies.unshift(strategy)
 
     }
