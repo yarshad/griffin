@@ -30,13 +30,11 @@ export class StrategyService {
     })
 
     var td1 = new Trade(-1,true, call)
-    var td2 = new Trade(1,false, put)
+    var td2 = new Trade(-1,true, put)
     
     strategy.legs = [td1, td2]
-    strategy.totalPrice = (td1.quantity * td1.option.price)  + (td2.quantity * td2.option.price)
+    strategy.totalPrice = (td1.quantity * (td1.option.bid + td1.option.ask)/2)  + (td2.quantity * (td2.option.bid + td2.option.ask)/2 )
 
     return strategy;
-  }
-
-
+  }  
 }
