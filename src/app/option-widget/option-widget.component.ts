@@ -1,5 +1,6 @@
 import { Input, Component, OnInit, SimpleChanges  } from '@angular/core';
 import { OptionStrategy} from '../shared/models/option-strategy'
+import { Option} from '../shared/models/option'
 import {GridOptions} from 'ag-grid'
 import _ from "lodash";
 
@@ -16,23 +17,32 @@ export class OptionWidgetComponent  implements OnInit {
     }
 
   gridOptions: GridOptions;
-  rowData : null; 
+  rowData :null; 
+  footerData: object; 
   @Input() strategy : OptionStrategy ;
 
   constructor() {
         
   }
   
+
+  decimalRenderer(value){
+
+  }
+
   initGrid() {
-        this.gridOptions = { enableSorting: true, rowHeight : 18}
+        this.gridOptions = { 
+            rowHeight : 18,
+            floatingBottomRowData: []
+          }
         this.gridOptions.columnDefs = [
              
-                        {headerName: 'Expiry', field: 'expiry', width: 100},
-                        {headerName: 'B/S', field: 'isShort', width: 45},
+                        {headerName: 'Expiry', field: 'expiry', width: 70, floatingCellRenderer: function(params) { return 'Net'}},                          {
+                        headerName: 'B/S', field: 'isShort', width: 45},
                         {headerName: 'QTY', field: 'quantity', width: 45},
                         {headerName: 'Strike', field: 'strike', width: 45},
                         {headerName: 'CallPut', field: 'isCall', width: 55},
-                        {headerName: 'Price', field: 'price', width: 55}
+                        {headerName: 'Price', field: 'price', width: 55, cellRenderer: function(params) { return params.value.toPrecision(2)}}
                     ]
               
     }
@@ -54,10 +64,12 @@ export class OptionWidgetComponent  implements OnInit {
                     return row;
                 });
 
-                  this
-                  console.log(this.rowData)
-                  // console.log(this.gridOptions.api)
-            // this.gridOptions.api.setRowData(data)
+              this.footerData =   [{price: this.strategy.totalPrice}]
+                       
+           
+          //  this.footerData.price = 100 
+            
+
         }
     }
 
