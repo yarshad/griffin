@@ -17,7 +17,6 @@ export class StrategyService {
     strategy.spot = optionChain.spot
     strategy.atmStrike = optionChain.atmStrike
 
-
     var call : Option = _.find(optionChain.calls, function(c){
       return c.strike == strategy.atmStrike
     })
