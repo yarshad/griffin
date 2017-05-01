@@ -5,7 +5,6 @@ import {GridOptions} from 'ag-grid'
 import { OptionChain} from '../shared/models/option-chain'
 import { Option} from '../shared/models/option'
 import _ from "lodash";
-
 import {OptionStrategy} from '../shared/models/option-strategy'
 import {StrategyService} from '../shared/services/strategy.service'
 
