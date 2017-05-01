@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit {
     ticker: string = 'SPY'
     optionChain : OptionChain 
     expirations = []
+    strategyList = ['', 'Strangle', 'Straddle', 'Iron Condor']
     strategies = []
+    // selectedStrategy: String
     selectedExpiry : number  
     baseUrl : string = 'http://griffin-api.herokuapp.com/'
     // baseUrl : string = 'http://localhost:9000/'
@@ -66,13 +68,29 @@ export class HomeComponent implements OnInit {
      
     }
 
-    addStrategy(){
+    addStrategy(stg){
 
-        console.log("Adding strategy")
-        // var strategy = this.strategyService.getStrangle(this.optionChain)
-        var strategy = this.strategyService.getIronCondor(this.optionChain)
-        this.strategies.unshift(strategy)
+    console.log("Adding " + stg)
+    
+    switch(stg) { 
 
+    case 'Strangle': { 
+        var strategy = this.strategyService.getStrangle(this.optionChain)
+        this.strategies.unshift(strategy) 
+        break; 
+    } 
+    case 'Straddle': { 
+        var strategy = this.strategyService.getStraddle(this.optionChain)
+        this.strategies.unshift(strategy) 
+        break; 
+    } 
+
+    case 'Iron Condor': { 
+            var strategy = this.strategyService.getIronCondor(this.optionChain)
+            this.strategies.unshift(strategy) 
+            break;    
+        } 
+            }
     }
 
 searchTicker(){
@@ -101,6 +119,7 @@ expirySelected(expiry){
                     key : d.optionSymbol,
                     expiry: d.expiry,
                     bid: d.bid,
+                    mid: (d.bid + d.ask) / 2,
                     price : d.lastPrice,
                     ask : d.ask,
                     volume : d.volume,
@@ -122,6 +141,7 @@ expirySelected(expiry){
                     key : d.optionSymbol,
                     expiry: d.expiry,
                     bid: d.bid,
+                    mid: (d.bid + d.ask) / 2,
                     price : d.lastPrice,
                     ask : d.ask,
                     volume : d.volume,

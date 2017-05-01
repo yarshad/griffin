@@ -30,8 +30,8 @@ export class StrategyService {
     var td1 = new Trade(-1,true, call)
     var td2 = new Trade(-1,true, put)
     
-    strategy.legs = [td1, td2]
-    strategy.totalPrice = (td1.quantity * (td1.option.bid + td1.option.ask)/2)  + (td2.quantity * (td2.option.bid + td2.option.ask)/2 )
+    strategy.legs = [td1, td2]    
+    strategy.totalPrice = _.chain(strategy.legs).map(t => t.quantity * t.option.mid).sum().value()
 
     return strategy;
   }  
@@ -39,7 +39,7 @@ export class StrategyService {
   public getStrangle(optionChain : OptionChain) {
     
     var strategy = new OptionStrategy()
-    strategy.name = "Straddle"
+    strategy.name = "Strangle"
     strategy.ticker = optionChain.ticker
     strategy.spot = optionChain.spot
     strategy.atmStrike = optionChain.atmStrike
@@ -55,8 +55,9 @@ export class StrategyService {
     var td1 = new Trade(-1,true, call)
     var td2 = new Trade(-1,true, put)
     
-    strategy.legs = [td1, td2]
-    strategy.totalPrice = (td1.quantity * (td1.option.bid + td1.option.ask)/2)  + (td2.quantity * (td2.option.bid + td2.option.ask)/2 )
+    strategy.legs = [td1, td2]  
+    strategy.totalPrice = _.chain(strategy.legs).map(t => t.quantity * t.option.mid).sum().value()
+
 
     return strategy;
   }  
@@ -81,7 +82,7 @@ export class StrategyService {
     var td3 = new Trade(1,false, longCall)
     
     strategy.legs = [td0, td1, td2, td3]
-    strategy.totalPrice = _.chain(strategy.legs).map(t => t.quantity * (t.option.bid + t.option.ask)/2).sum().value()
+    strategy.totalPrice = _.chain(strategy.legs).map(t => t.quantity * t.option.mid).sum().value()
 
     return strategy;
   }  
