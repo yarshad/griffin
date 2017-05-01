@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
     expirations = []
     strategies = []
     selectedExpiry : number  
-    // baseUrl : string = 'http://griffin-api.herokuapp.com/'
-    baseUrl : string = 'http://localhost:9000/'
+    baseUrl : string = 'http://griffin-api.herokuapp.com/'
+    // baseUrl : string = 'http://localhost:9000/'
 
     constructor(private _http: Http, ss: StrategyService) {
         this.initGrid()
