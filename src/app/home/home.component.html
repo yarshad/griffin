@@ -11,7 +11,7 @@
   <div class="input-group input-group-sm">
   <span class="input-group-addon" id="expiry">Expiration</span>
   <select name="theme" class="form-control" [(ngModel)]="selectedExpiry" (ngModelChange)="expirySelected($event)" style="width: 130px">
-        <option *ngFor="let expiry of expirations" [ngValue]="expiry">{{expiry  * 1000 | date : 'dd MMM yyyy' : 'UTC'}}</option>
+        <option *ngFor="let expiry of expirations" [ngValue]="expiry">{{expiry | date : 'dd MMM yyyy' }}</option>
       </select>
     </div>
   </div>

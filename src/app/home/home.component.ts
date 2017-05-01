@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
     expirations = []
     strategies = []
     selectedExpiry : number  
-    baseUrl : string = 'http://griffin-api.herokuapp.com/'
-    // baseUrl : string = 'http://localhost:9000/'
+    // baseUrl : string = 'http://griffin-api.herokuapp.com/'
+    baseUrl : string = 'http://localhost:9000/'
 
     constructor(private _http: Http, ss: StrategyService) {
         this.initGrid()
@@ -82,16 +82,19 @@ searchTicker(){
      }
 
 expirySelected(expiry){
-      
+         
     var url = this.baseUrl  + "options/" + this.ticker + "/" + expiry
+    console.log(url)
     var result = this._http.get(url).map((response: Response) => response.json());
     result.subscribe(response => {this.processResponse(response)})
     }
    
    
     processResponse(response){         
-           console.log(response)
+        //    console.log(response)
            this.expirations = response.expirations
+           this.selectedExpiry = response.calls[0].expiry
+
            var calls =  _.map(response.calls,function(d){
 
                   var call : Option = {
